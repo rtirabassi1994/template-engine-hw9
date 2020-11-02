@@ -25,41 +25,61 @@ function appMenu() {
               type: "input",
               name: "managerName",
               message: "What is your manager's name? ",
-            //   validate: answer => {
-            //       if (answer !== "") {
-            //           return true;
-            //       }
-            //       return "Please enter at least one character.";
-            //       }
-            //   }
+              validate: answer => {
+                if(answer !== "") {
+                    return true
+                }
+
+                return "Please enter at least one character"
+            }
+
            },
            {
+                type: "input",
+                name: "managerId",
+                message: "What is your manager's ID? ",
+                validate: answer => {
+                if(answer !== "") {
+                    return true
+                }
+
+                return "Please enter at least one number"
+            }
+           },
+           {
+           
               type: "input",
               name: "managerEmail",
               message: "What is your manager's email address?",
-              
-           },
+              validate: answer => {
+                if(answer !== "") {
+                    return true
+                }
+
+                return "Please enter a valid email"
+            }
+            },
            {
               type: "input",
               name: "managerOfficeNumber",
               message: "What is your office number?",
+              validate: answer => {
+                if(answer !== "") {
+                    return true
+                }
+
+                return "Please enter at least one number"
+            }
               
            }
-        ])
-        .then(function(response) {
-           let managerName = response.managerName;
-           let managerEmail = response.managerEmail;
-           let managerOffice = response.managerOfficeNumber;
-           let manager = new Manager(
-              managerName,
-              employeeID,
-              managerEmail,
-              managerOfficeNumber
-           );
-
-        });
+        ]).then(answers => {
+            const manager = new manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber)
+            teamMembers.push(manager)
+            arrayId.push(answers.managerId)
         
-    }
+    })
+
+}
 
     function createTeam(){
         // inquirer to ask which type of employee you want to create and runs the relevant function
@@ -86,14 +106,6 @@ function appMenu() {
                     buildTeam();
                     // i have to make another one of these for build team
             }
-
-            //if(answer.userChoice === "Engineer"){
-            //    createEngineer()
-            //} else if (answer.userChoice === "intern"){
-            //    createIntern()
-            //} else {
-            //    buildTeam();
-            //}
         });
         //switch case goes here
     }
@@ -154,9 +166,70 @@ function appMenu() {
             arrayId.push(answers.engineerId)
             // run a function here that creates the entire "team" prompting you to create another employee
             createTeam() 
-            // i think it ties back to this lol
         })
+    
     }
+
+        function createIntern() {
+            inquirer.prompt([
+               {
+                  type: "input",
+                  name: "internName",
+                  message: "What is your interns's name? ",
+                  validate: answer => {
+                    if(answer !== "") {
+                        return true
+                    }
+    
+                    return "Please enter at least one character"
+                }
+    
+               },
+               {
+                type: "input",
+                name: "internId",
+                message: "What is your intern's ID?",
+                validate: answer => {
+                  if(answer !== "") {
+                      return true
+                  }
+                    return "Please enter at least one number"
+              }
+            },
+               
+               {
+                  type: "input",
+                  name: "internEmail",
+                  message: "What is your intern's email address?",
+                  validate: answer => {
+                    if(answer !== "") {
+                        return true
+                    }
+    
+                    return "Please enter a valid email"
+                }
+                  
+               },
+               {
+                type: "input",
+                name: "internSchool",
+                message: "What is your intern's school?",
+                validate: answer => {
+                  if(answer !== "") {
+                      return true
+                  }
+  
+                  return "Please enter at least one character"
+                }
+                }
+            ]).then(answers => {
+                const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool)
+                teamMembers.push(intern)
+                arrayId.push(answers.internId)
+                // run a function here that creates the entire "team" prompting you to create another employee
+                createTeam() 
+            })
+        }
 
     function buildTeam() {
         // Create the output directory if the output path doesn't exist
@@ -165,6 +238,10 @@ function appMenu() {
         }
         fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
       }
+
+    //   function buildTeam() {
+        // fs.writeFileSync(outputPath, render(teamMembers), "utf-8")
+    // }
 
       
 }
