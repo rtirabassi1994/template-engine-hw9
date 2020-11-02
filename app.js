@@ -20,6 +20,7 @@ function appMenu() {
     //run manager function first 
     function createManager() {
         
+        
 
     }
 
