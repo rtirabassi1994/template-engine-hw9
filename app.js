@@ -19,12 +19,49 @@ function appMenu() {
 
     //run manager function first 
     function createManager() {
-        
-        
+        console.log("Begin building your team")
+        inquirer.prompt([
+           {
+              type: "input",
+              name: "managerName",
+              message: "What is your manager's name? ",
+            //   validate: answer => {
+            //       if (answer !== "") {
+            //           return true;
+            //       }
+            //       return "Please enter at least one character.";
+            //       }
+            //   }
+           },
+           {
+              type: "input",
+              name: "managerEmail",
+              message: "What is your manager's email address?",
+              
+           },
+           {
+              type: "input",
+              name: "managerOfficeNumber",
+              message: "What is your office number?",
+              
+           }
+        ])
+        .then(function(response) {
+           let managerName = response.managerName;
+           let managerEmail = response.managerEmail;
+           let managerOffice = response.managerOfficeNumber;
+           let manager = new Manager(
+              managerName,
+              employeeID,
+              managerEmail,
+              managerOfficeNumber
+           );
 
+        });
+        
     }
 
-    function  createTeam(){
+    function createTeam(){
         // inquirer to ask which type of employee you want to create and runs the relevant function
         inquirer.prompt([
             {
