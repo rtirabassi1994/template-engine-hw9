@@ -25,7 +25,7 @@
   ## Installation
   ***
   
-  ![package.json example](/packagejson.JPG "Installation Example")<br>
+  ![package.json example](/pictures/homework9.JPG "Installation Example")<br>
   
   First, run "npm install" to install the following npm package dependencies from package.json: <br>
 
@@ -34,7 +34,7 @@
   
   ## Usage
   ***
-  Watch the video for instruction [here.](https://drive.google.com/file/)<br>
+  Watch the video for instruction [here.](https://drive.google.com/file/d/1HnU5Aikw17pQTp_7QvXUO09DFkh-_GIS/view)<br>
 
   Run node app.js and the app will use the inquirer package to prompt you in the command line with a series of questions about the manager, engineer, and emoloyee.<br>
 
