@@ -73,10 +73,10 @@ function appMenu() {
               
            }
         ]).then(answers => {
-            const manager = new manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber)
+            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber)
             teamMembers.push(manager)
             arrayId.push(answers.managerId)
-        
+        createTeam()
     })
 
 }
@@ -107,6 +107,7 @@ function appMenu() {
                     // i have to make another one of these for build team
             }
         });
+       createEngineer()
         //switch case goes here
     }
 
@@ -238,6 +239,9 @@ function appMenu() {
         }
         fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
       }
+
+      createManager()
+      
 
     //   function buildTeam() {
         // fs.writeFileSync(outputPath, render(teamMembers), "utf-8")
